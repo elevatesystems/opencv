@@ -107,6 +107,8 @@ white_list = None
 namespace_prefix_override = {
     'dnn' : '',
     'aruco' : '',
+    'ximgproc': '',
+    'ximgproc_segmentation': '',
 }
 
 # Features to be exported
@@ -776,7 +778,8 @@ class JSWrapperGenerator(object):
                     name = ns_prefix + '_' + name
                 if name in ignore_list:
                     continue
-                if not name in white_list['']:
+                alt_name = ns_id + '_' + name
+                if not name in white_list[''] and not alt_name in white_list['']:
                     #print('Not in whitelist: "{}" from ns={}'.format(name, ns_name))
                     continue
 
@@ -788,6 +791,8 @@ class JSWrapperGenerator(object):
                         # Register the smart pointer
                         base_class_name = variant.rettype
                         base_class_name = base_class_name.replace("Ptr<","").replace(">","").strip()
+                        if self.classes.get(base_class_name) is None:
+                            base_class_name = ns_id + '_' + base_class_name
                         self.classes[base_class_name].has_smart_ptr = True
 
                         # Adds the external constructor

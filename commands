@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+python platforms/js/build_js.py \
+--emscripten_dir /home/oliver/projects/elevate/emsdk/upstream/emscripten \
+--clean_build_dir \
+--build_wasm \
+--cmake_option="-DOPENCV_EXTRA_MODULES_PATH=/home/oliver/projects/elevate/opencv_contrib/modules/" \
+--cmake_option="-DBUILD_opencv_imgcodecs=ON" \
+build_js

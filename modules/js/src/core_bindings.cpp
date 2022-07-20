@@ -101,6 +101,10 @@ using namespace aruco;
 typedef TrackerMIL::Params TrackerMIL_Params;
 #endif
 
+#ifdef HAVE_OPENCV_XIMGPROC
+using namespace ximgproc;
+#endif
+
 namespace binding_utils
 {
     template<typename classT, typename enumT>
